@@ -20,10 +20,22 @@ function handleConnectDisconnect(event, connected) {
     controllerAreaNotConnected.style.display = "none";
     controllerAreaConnected.style.display = "block";
     createButtonLayout(gamepad.buttons);
+    createAxesLayout(gamepad.axes);
   } else {
     controllerIndex = null;
     controllerAreaNotConnected.style.display = "block";
     controllerAreaConnected.style.display = "none";
+  }
+}
+function createAxesLayout(axes) {
+  const buttonArea = document.getElementById("buttons");
+  for (let i = 0; i < axes.length; i++) {
+    buttonArea.innerHTML += `
+    <div id = axis-${i} class = "axis">
+      <div class = "axis-name">AXIS ${i}</div>
+      <div class = "axis-value">${axes[i].toFixed(4)}
+      </div>
+    </div>`;
   }
 }
 
@@ -87,8 +99,17 @@ function handleButtons(buttons) {
 }
 
 function handleSticks(axes) {
+  updateAxisGrid(axes);
   updateStick("controller-b10", axes[0], axes[1]);
   updateStick("controller-b11", axes[2], axes[3]);
+}
+function updateAxisGrid(axes) {
+  for (let i = 0; i < axes.length; i++) {
+    const axis = document.querySelector(`#axis-${i} .axis-value`);
+    const value = axes[i];
+
+    axis.innerHTML = value.toFixed(4);
+  }
 }
 function updateStick(elementId, leftRightAxis, upDownAxis) {
   const multiplier = 25;
