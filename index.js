@@ -123,11 +123,25 @@ function updateStick(elementId, leftRightAxis, upDownAxis) {
   stick.setAttribute("cx", x + stickLeftRight);
   stick.setAttribute("cy", y + stickUpDown);
 }
+function handleRumble(gamepad) {
+  const rumbleOnButtonPress = document.getElementById("rumble-on-button-press");
+  if (rumbleOnButtonPress.checked) {
+    if (gamepad.buttons.some((button) => button.value > 0)) {
+      gamepad.vibrationActuator.playEffect("dual-rumble", {
+        startDelay: 0,
+        duration: 25,
+        weakMagnitude: 1.0,
+        strongMagnitude: 1.0,
+      });
+    }
+  }
+}
 function gameLoop() {
   if (controllerIndex !== null) {
     const gamepad = navigator.getGamepads()[controllerIndex];
     handleButtons(gamepad.buttons);
     handleSticks(gamepad.axes);
+    handleRumble(gamepad);
   }
   requestAnimationFrame(gameLoop);
 }
