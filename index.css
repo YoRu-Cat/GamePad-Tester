@@ -22,7 +22,7 @@ h1 {
   text-align: center;
 }
 #controller-connected {
-  color: green;
+  font-size: 1.2rem;
 }
 #controller-connected-area {
   display: none;
@@ -35,6 +35,7 @@ h1 {
 }
 #rumble-on-button-press-area {
   margin-bottom: 10px;
+  text-align: center;
 }
 .loader {
   display: inline-block;
@@ -53,4 +54,28 @@ h1 {
   100% {
     transform: rotate(360deg);
   }
+}
+#buttons {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(min-content, max-content));
+  grid-gap: 15px;
+  justify-content: center;
+  justify-items: start;
+}
+.button {
+  border: 1px solid rgb(229, 229, 229);
+  height: 50px;
+  min-width: 50px;
+  display: flex;
+  z-index: -1;
+}
+.button-text-area {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.button-text-area {
+  z-index: 100;
+}
+.selected-button {
+  fill: rgb(73, 0, 0);
 }
