@@ -70,8 +70,10 @@ function updateControllerButton(index, value) {
   if (button) {
     if (value > 0) {
       button.classList.add(selectedButtonClass);
+      button.style.filter = `contrast(${value * 100}%)`;
     } else {
       button.classList.remove(selectedButtonClass);
+      button.style.filter = `contrast(100%)`;
     }
   }
 }
@@ -83,10 +85,28 @@ function handleButtons(buttons) {
     updateControllerButton(i, buttonValue);
   }
 }
+
+function handleSticks(axes) {
+  updateStick("controller-b10", axes[0], axes[1]);
+  updateStick("controller-b11", axes[2], axes[3]);
+}
+function updateStick(elementId, leftRightAxis, upDownAxis) {
+  const multiplier = 25;
+  const stickLeftRight = leftRightAxis * multiplier;
+  const stickUpDown = upDownAxis * multiplier;
+
+  const stick = document.getElementById(elementId);
+  const x = Number(stick.dataset.originalXPosition);
+  const y = Number(stick.dataset.originalYPosition);
+
+  stick.setAttribute("cx", x + stickLeftRight);
+  stick.setAttribute("cy", y + stickUpDown);
+}
 function gameLoop() {
   if (controllerIndex !== null) {
     const gamepad = navigator.getGamepads()[controllerIndex];
     handleButtons(gamepad.buttons);
+    handleSticks(gamepad.axes);
   }
   requestAnimationFrame(gameLoop);
 }
