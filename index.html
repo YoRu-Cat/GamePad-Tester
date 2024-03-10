@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GamePad Tester</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1 class="center">GamePad Tester</h1>
+    <div id="controller-not-connected-area" class="controller-status">
+      <div class="loader"></div>
+      <div class="">Controller not connected. Press any button to start.</div>
+    </div>
+    <div class="controller-connected-area">
+      <div id="controller-connected" class="controller-status">Connected</div>
+      <div id="rumble-on-button-press-area">
+        <input id="rumble-on-button-press" type="checkbox" />
+        <label for="rumble-on-button-press">Rumble on button press</label>
+      </div>
+      <div id="buttons"></div>
+    </div>
+  </body>
+</html>
