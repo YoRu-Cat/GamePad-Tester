@@ -3,9 +3,54 @@ html {
   font-family: Roboto;
 }
 body {
+  padding: 0px;
+  margin: 0px;
   background: rgb(122, 0, 69);
   color: rgb(229, 229, 229);
 }
 h1 {
   font-weight: 700;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-size: 3.5em;
+}
+.center {
+  text-align: center;
+}
+.controller-status {
+  font-weight: bold;
+  text-align: center;
+}
+#controller-connected {
+  color: green;
+}
+#controller-connected-area {
+  display: none;
+}
+#controller-not-connected-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+#rumble-on-button-press-area {
+  margin-bottom: 10px;
+}
+.loader {
+  display: inline-block;
+  border: 3px solid rgb(229, 229, 229);
+  border-radius: 50%;
+  border-top: 3px solid transparent;
+  width: 16px;
+  height: 16px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
